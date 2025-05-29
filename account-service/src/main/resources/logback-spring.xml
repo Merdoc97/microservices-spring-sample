@@ -65,8 +65,8 @@
             <appender-ref ref="STDOUT"/>
             <appender-ref ref="AMQP"/>
         </root>
-    </springProfile>
 
+    </springProfile>
     <springProfile name="!stash">
         <root level="INFO">
             <appender-ref ref="STDOUT"/>

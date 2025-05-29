@@ -4,8 +4,19 @@ server:
   port: ${PORT:3334}
 
 spring:
-  profiles:
-    include: stash
+  datasource:
+    url: jdbc:postgresql://localhost:5434/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: true
+    url: ${spring.datasource.url}
+    password: ${spring.datasource.password}
+    user: ${spring.datasource.username}
+    driver-class-name: ${spring.datasource.driver-class-name}
+    fail-on-missing-locations: true
+
   application:
     name: account-service
   security:
@@ -48,3 +59,6 @@ management:
       exposure:
         #      new feature most endpoints from http layer not allowed
         include: "*"
+logging:
+  level:
+    org.flywaydb: debug

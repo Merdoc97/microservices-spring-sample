@@ -2,7 +2,7 @@ global:
   dockerRegistryUrl: localhost:5000
   namespace: microservice
   image: account-service
-  imageVersion: 0.0.40
+  imageVersion: 0.0.68
   application:
    volumeMounts:
       - mountPath: /tmp
@@ -31,5 +31,10 @@ global:
    deployment:
      configMapRefs:
        - account-config
-
+  datasource:
+    migration:
+      enabled: "true"
+      image: "localhost:5000/account-service:0.0.68"
+      secretRefs:
+        - migrationaccount
 
