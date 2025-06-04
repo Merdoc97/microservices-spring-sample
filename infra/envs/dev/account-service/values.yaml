@@ -31,10 +31,14 @@ global:
    deployment:
      configMapRefs:
        - account-config
+     secretRefs:
+       - account-secret
   datasource:
     migration:
       enabled: "true"
       image: "localhost:5000/account-service:0.0.68"
       secretRefs:
-        - migrationaccount
+        - account-secret
+      configMapRefs:
+        - account-hook
 

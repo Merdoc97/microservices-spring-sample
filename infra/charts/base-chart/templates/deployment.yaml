@@ -57,12 +57,12 @@ spec:
               protocol: TCP
           envFrom:
             {{- range .Values.global.application.deployment.configMapRefs }}
-            - configMapRef:
-                name: {{ . }}
+               - configMapRef:
+                   name: {{ . }}
             {{- end }}
             {{- range .Values.global.application.deployment.secretRefs }}
-             - secretRef:
-                name: {{ . }}
+               - secretRef:
+                  name: {{ . }}
             {{- end }}
           livenessProbe:
             {{- toYaml .Values.global.application.deployment.livenessProbe | nindent 12 }}

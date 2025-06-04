@@ -15,12 +15,12 @@ spec:
       imagePullPolicy: IfNotPresent
       envFrom:
         {{- range .Values.global.datasource.migration.secretRefs }}
-        - secretRef:
-            name: {{.}}
+            - secretRef:
+                name: {{.}}
             {{end}}
         {{- range .Values.global.datasource.migration.configMapRefs }}
-        - configMapRef:
-            name: {{ . }}
+            - configMapRef:
+                name: {{ . }}
         {{- end }}
   restartPolicy: Never
 

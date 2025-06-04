@@ -1,0 +1,8 @@
+first run need to run command from vault pod
+"vault operator init" and store keys
+after that need run 3 times command
+vault operator unseal <key1>
+vault operator unseal <key2>
+vault operator unseal <key3>
+
+after that vault will work correctly
