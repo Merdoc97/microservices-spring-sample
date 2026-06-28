@@ -2,10 +2,13 @@ info:
   component: ${spring.application.name}
 server:
   port: ${PORT:3334}
-
+  address: 127.0.0.2
 spring:
+  threads:
+    virtual:
+      enabled: true
   datasource:
-    url: jdbc:postgresql://localhost:5434/postgres
+    url: jdbc:postgresql://localhost:5433/postgres
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -40,6 +43,7 @@ spring:
     username: user
     password: password
     port: 5672
+
 management:
   tracing:
     sampling:
@@ -47,10 +51,14 @@ management:
     propagation:
       type: b3_multi
       consume: b3_multi
-    enabled: true
+    enabled: false
+
   otlp:
     tracing:
       endpoint: http://localhost:4318/v1/traces
+    metrics:
+      export:
+        enabled: false
 
 
 
@@ -59,6 +67,13 @@ management:
       exposure:
         #      new feature most endpoints from http layer not allowed
         include: "*"
+        exclude: rabbit
+  endpoint:
+    health:
+      show-details: always
+  health:
+    rabbit:
+      enabled: false
 logging:
   level:
     org.flywaydb: debug
